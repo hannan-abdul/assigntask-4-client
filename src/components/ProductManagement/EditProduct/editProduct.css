@@ -1,0 +1,30 @@
+.button-fix {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  padding: 6px 20px;
+}
+
+.button-fix:hover {
+  background-color: #ff8100;
+  box-shadow: 7px 4px 20px #808080d1;
+}
+
+.row-fix:hover {
+  background-color: #80808026;
+}
+
+.inner-button-fix {
+  padding: 10px;
+  border: 0;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px slategrey;
+  width: 20%;
+}
+.modal-form {
+  margin: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

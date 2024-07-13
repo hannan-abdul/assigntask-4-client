@@ -1,0 +1,24 @@
+.nav-fix {
+  font-weight: 600;
+}
+
+.navbar li a {
+  margin: 0 10px;
+}
+.navbar li {
+  transition-duration: 0.3s;
+  border-radius: 5px;
+}
+
+.navbar li:hover {
+  background-color: gray;
+}
+.auth {
+  background-color: gray;
+  border: 0;
+  border-radius: 10px;
+  box-shadow: 2px 3px 5px #f6f7ff;
+}
+.navigation {
+  display: flex;
+}
