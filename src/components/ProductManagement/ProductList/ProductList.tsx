@@ -1,22 +1,23 @@
-import React, { useEffect, useState } from "react";
+import { useGetAllProductsQuery } from "../../../redux/features/products/products";
 import DashboardMenu from "../../Dashboard/DashboardMenu";
-import axios from "axios";
+import { Product } from "../../interface";
 import ProductEdit from "../ProductEdit/ProductEdit";
 
 const ProductList = () => {
-  const [managenews, setManagenews] = useState([]);
+  const { data, error, isLoading } = useGetAllProductsQuery({});
 
-  useEffect(() => {
-    const getAllNews = async () => {
-      try {
-        const res = await axios.get("http://localhost:5500/api/allproducts");
-        setManagenews(res.data.date);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getAllNews();
-  }, []);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  if (!data || !data.date) {
+    return <div>No data available</div>;
+  }
+
   return (
     <section>
       <div>
@@ -32,7 +33,7 @@ const ProductList = () => {
         }}
       >
         <h3>Manage Products</h3>
-        {managenews.map((newdata) => (
+        {data.date.map((newdata: Product) => (
           <ProductEdit newdata={newdata} />
         ))}
       </div>

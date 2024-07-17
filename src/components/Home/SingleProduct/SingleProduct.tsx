@@ -1,8 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { SingleProductProps } from "../../interface";
 
-const SingleProduct = ({ newdata }) => {
-  const { name, price, description, quantity, image, category } = newdata;
-  console.log({ newdata });
+const SingleProduct: React.FC<SingleProductProps> = ({ newdata }) => {
+  if (!newdata || !newdata.data) {
+    return <div>No product data available</div>;
+  }
+  const { name, price, description, image, category } = newdata.data;
+  console.log("singleProduct", newdata.data);
 
   return (
     <div className="single-news-fix">
@@ -19,6 +24,11 @@ const SingleProduct = ({ newdata }) => {
       </div>
 
       <p>{description}</p>
+      <div>
+        <Link to="/cart">
+          <button className="btn-primary">Buy</button>
+        </Link>
+      </div>
     </div>
   );
 };

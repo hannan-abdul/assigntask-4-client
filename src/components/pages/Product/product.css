@@ -1,0 +1,52 @@
+/* .card-fix {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid gray;
+  width: 46% !important;
+}
+
+.main-body-fix {
+  box-shadow: 2px 4px 11px grey;
+}
+
+.all-img-fix {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.all-img-title:hover {
+  color: gray !important;
+}
+
+.paginationBttns {
+  width: 80%;
+  height: 30px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.paginationBttns a {
+  padding: 5px 10px;
+  margin: 8px;
+  border: 1px solid #0775a1;
+  text-decoration: none;
+  color: #333;
+  cursor: pointer;
+}
+
+.paginationBttns a:hover {
+  color: white;
+  background-color: #0775a1;
+}
+
+.paginationActive a {
+  color: white;
+  background-color: #0775a1;
+}
+
+.paginationDisabled a {
+  color: #fff;
+  text-decoration: none;
+  background-color: grey;
+} */

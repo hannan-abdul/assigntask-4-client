@@ -6,6 +6,7 @@ import SingleProduct from "../SingleProduct/SingleProduct";
 const ProductDetails = () => {
   const { productKey } = useParams();
   const [newdata, setNewsdata] = useState([]);
+  console.log("productDetail", newdata);
 
   useEffect(() => {
     const getSingleNews = async () => {

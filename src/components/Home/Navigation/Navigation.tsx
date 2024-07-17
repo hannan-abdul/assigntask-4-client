@@ -18,9 +18,11 @@ function Navigation() {
                   Home
                 </Link>
               </li>
-              <Link className="nav-link" to="/product">
-                Product
-              </Link>
+              <li className="nav-item nav-fix">
+                <Link className="nav-link" to="/product">
+                  Product
+                </Link>
+              </li>
               <li className="nav-item nav-fix">
                 <Link className="nav-link" to="/about">
                   About
@@ -31,9 +33,11 @@ function Navigation() {
                   Dashboard
                 </Link>
               </li>
-              <Link className="nav-link" to="/cart">
-                Cart
-              </Link>
+              <li className="nav-item nav-fix">
+                <Link className="nav-link" to="/cart">
+                  Cart
+                </Link>
+              </li>
             </Nav>
           </Navbar.Collapse>
         </div>

@@ -20,12 +20,11 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 const ModalForm = ({ modalIsOpen, closeModal, newdata }) => {
-  //   const email = useSelector((state) => state.auth.userdetails.email);
-  //   const categories = useSelector((state) => state.categories.item);
-  const { name, description, category, _id } = newdata;
+  const { name, description, category, image, price, quantity, _id } = newdata;
+
   const { register, handleSubmit } = useForm();
-  const navigate = useNavigate();
   const [photo, setPhoto] = useState(null);
+  const navigate = useNavigate();
 
   type dataType = {
     name: string;
@@ -55,12 +54,13 @@ const ModalForm = ({ modalIsOpen, closeModal, newdata }) => {
       console.log("server side response", res);
       swal(
         "Successfully updated",
-        "Your News has been successfully updated!",
+        "Your Product has been successfully updated!",
         "success"
       );
       res && navigate("/dashboard");
+      window.location.reload();
     } catch (err) {
-      swal("Failed!", "You can update only your added News!", "error", {
+      swal("Failed!", "You can update only your added Product!", "error", {
         dangerMode: true,
       });
       console.log(err);
@@ -119,16 +119,37 @@ const ModalForm = ({ modalIsOpen, closeModal, newdata }) => {
             </div>
           </div>
           <br />
-          <input type="text" placeholder="Name" {...register("name")} />
+          <input
+            type="text"
+            defaultValue={name}
+            placeholder="Name"
+            {...register("name")}
+          />
           <br />
-          <input type="text" placeholder="price" {...register("price")} />
+          <input
+            type="text"
+            defaultValue={price}
+            placeholder="price"
+            {...register("price")}
+          />
           <br />
-          <input type="text" placeholder="quantity" {...register("quantity")} />
+          <input
+            type="text"
+            defaultValue={quantity}
+            placeholder="quantity"
+            {...register("quantity")}
+          />
           <br />
-          <input type="text" placeholder="category" {...register("category")} />
+          <input
+            type="text"
+            defaultValue={category}
+            placeholder="category"
+            {...register("category")}
+          />
           <br />
           <textarea
             type="text"
+            defaultValue={description}
             placeholder="Description"
             {...register("description")}
           />

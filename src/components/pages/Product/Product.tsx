@@ -1,15 +1,13 @@
 import { useState } from "react";
-import "./body.css";
 import { Link, useLocation } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import { useGetAllProductsQuery } from "../../../redux/features/products/products";
-import { Product } from "../../interface";
-import { PageChangeEvent } from "./constant";
+import "./product.css";
 
-const Body = () => {
+const Product = () => {
   const path = useLocation();
   const [pageNumber, setPageNumber] = useState(0);
-  const { data, error, isLoading } = useGetAllProductsQuery({});
+  const { data, error, isLoading } = useGetAllProductsQuery();
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -32,10 +30,9 @@ const Body = () => {
   const pageVigited = pageNumber * userPerPage;
 
   const pageCount = Math.ceil(filterNews.length / userPerPage);
-  const changePage = ({ selected }: PageChangeEvent) => {
+  const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
-
   return (
     <div className="container text-center mt-3">
       <div className="row justify-content-between text-center mt-5 mb-5 pb-3 pt-3 main-body-fix">
@@ -46,16 +43,20 @@ const Body = () => {
         )}
         {filterNews
           .slice(pageVigited, pageVigited + userPerPage)
-          .map((newdata: Product) => (
-            <div className="col-lg-5 col-md-4 col-sm-12 card-fix">
-              <div className="text-start">
+          .map((newdata) => (
+            <div className="col-md-4 mt-5">
+              <div className="card-fix">
                 <Link to={`/product/${newdata._id}`} key={newdata._id}>
                   <img
+                    style={{ width: "100px" }}
                     className="all-img-fix"
                     src={newdata.image}
                     alt="new image"
                   />
                 </Link>
+                <div className="text-decoration-none text-black all-img-title">
+                  <p>$ {newdata.price}</p>
+                </div>
                 <h4>
                   <Link
                     className="text-decoration-none text-black all-img-title"
@@ -65,13 +66,13 @@ const Body = () => {
                     {newdata.name}
                   </Link>
                 </h4>
-
                 <div className="d-flex justify-content-between">
                   <div>
-                    <p>$ {newdata.price}</p>
+                    <Link to="/cart">
+                      <button className="btn-primary">Buy</button>
+                    </Link>
                   </div>
                 </div>
-                <h5>{newdata.category}</h5>
               </div>
             </div>
           ))}
@@ -91,4 +92,4 @@ const Body = () => {
   );
 };
 
-export default Body;
+export default Product;
