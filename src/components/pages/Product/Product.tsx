@@ -50,7 +50,7 @@ const Product = () => {
         {filterNews
           .slice(pageVigited, pageVigited + userPerPage)
           .map((newdata) => (
-            <div className="col-md-4 mt-5">
+            <div className="col-md-4 mt-5 product-card">
               <div className="card-fix">
                 <Link to={`/product/${newdata._id}`} key={newdata._id}>
                   <img
