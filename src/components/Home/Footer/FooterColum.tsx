@@ -1,7 +1,7 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import { FooterColumnProps } from "./constant";
 
-const FooterColum = (props) => {
+const FooterColum: React.FC<FooterColumnProps> = (props) => {
   return (
     <div className="col-md-4 text-start">
       <h6 className="text-primary">

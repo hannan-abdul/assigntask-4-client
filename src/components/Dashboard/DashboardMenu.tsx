@@ -1,4 +1,3 @@
-import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSignOutAlt,
@@ -7,12 +6,8 @@ import {
 import { Link } from "react-router-dom";
 import "./dashboardMenu.css";
 import { dashboard_nav } from "../../LocalData/LocalData";
-// import { useDispatch, useSelector } from 'react-redux';
 
 const DashboardMenu = () => {
-  // const dispatch = useDispatch();
-  // const role = useSelector((state) => state.auth.userdetails.role);
-  // const filtered = dashboard_nav.filter(nav => nav.role.includes(role))
   return (
     <div
       className="sidebar d-flex flex-column justify-content-between col-md-2 py-5 px-4"

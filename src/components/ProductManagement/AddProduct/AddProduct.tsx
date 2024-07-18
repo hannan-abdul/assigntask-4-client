@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from "react";
 import DashboardMenu from "../../Dashboard/DashboardMenu";
 import axios from "axios";
@@ -7,11 +8,7 @@ import "./addProduct.css";
 import { Product } from "../../interface";
 
 const AddProduct = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Product>();
+  const { register, handleSubmit } = useForm<Product>();
   const [photo, setPhoto] = useState<string | null>(null);
   const navigate = useNavigate();
 
@@ -27,7 +24,7 @@ const AddProduct = () => {
     try {
       const res = await axios({
         method: "post",
-        url: `http://localhost:5500/api/products`,
+        url: `https://fitness-equp-server.vercel.app/api/products`,
         data: productData,
       });
       swal(
@@ -37,6 +34,7 @@ const AddProduct = () => {
       );
       console.log("server side response", res);
       res && navigate("/dashboard");
+      window.location.reload();
     } catch (err) {
       console.log(err);
     }
@@ -100,11 +98,7 @@ const AddProduct = () => {
           <br />
           <input type="text" placeholder="category" {...register("category")} />
           <br />
-          <textarea
-            type="text"
-            placeholder="Description"
-            {...register("description")}
-          />
+          <textarea placeholder="Description" {...register("description")} />
           <br />
           <input className="custom-btn" type="submit" />
         </form>

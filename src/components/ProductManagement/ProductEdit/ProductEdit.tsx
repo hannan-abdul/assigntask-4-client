@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./productEdit.css";
 import swal from "sweetalert";
 import axios from "axios";
 import EditProduct from "../EditProduct/EditProduct";
+import { Product } from "../../interface";
 
-const ProductEdit = ({ newdata }) => {
+interface ProductEditProps {
+  newdata: Product;
+}
+
+const ProductEdit: React.FC<ProductEditProps> = ({ newdata }) => {
   const { name, description, category, _id } = newdata;
   const [modalIsOpen, setIsOpen] = useState(false);
   // modal function
@@ -15,9 +20,11 @@ const ProductEdit = ({ newdata }) => {
     setIsOpen(false);
   }
 
-  const deleteNews = async (_id) => {
+  const deleteNews = async (_id: string) => {
     try {
-      await axios.delete(`http://localhost:5500/api/product/${_id}`);
+      await axios.delete(
+        `https://fitness-equp-server.vercel.app/api/product/${_id}`
+      );
       swal(
         "Successfully Deleted",
         "Your News has been successfully Deleted!",

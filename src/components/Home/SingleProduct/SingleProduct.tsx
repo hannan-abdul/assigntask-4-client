@@ -20,7 +20,7 @@ const SingleProduct: React.FC<SingleProductProps> = ({ newdata }) => {
           <h5>Author: {price}</h5>
           <h6>Category: {category}</h6>
         </div>
-        <div>{/* <span>{new Date(createdAt).toDateString()}</span> */}</div>
+        {/* <div><span>{new Date(createdAt).toDateString()}</span></div> */}
       </div>
 
       <p>{description}</p>

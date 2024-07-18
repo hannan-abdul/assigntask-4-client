@@ -13,7 +13,13 @@ const Product = () => {
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    let errorMessage = "An unknown error occurred";
+    if ("status" in error) {
+      errorMessage = `Error: ${error.status}`;
+    } else if ("message" in error) {
+      errorMessage = `Error: ${error.message}`;
+    }
+    return <div>{errorMessage}</div>;
   }
 
   if (!data || !data.date) {
@@ -30,7 +36,7 @@ const Product = () => {
   const pageVigited = pageNumber * userPerPage;
 
   const pageCount = Math.ceil(filterNews.length / userPerPage);
-  const changePage = ({ selected }) => {
+  const changePage = ({ selected }: { selected: number }) => {
     setPageNumber(selected);
   };
   return (

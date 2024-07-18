@@ -1,41 +1,26 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Modal from "react-modal";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import "./editProduct.css";
-import { useSelector } from "react-redux";
-
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-};
+import { Product } from "../../interface";
+import { customStyles, ModalFormProps } from "./constant";
 
 Modal.setAppElement("#root");
-const ModalForm = ({ modalIsOpen, closeModal, newdata }) => {
-  const { name, description, category, image, price, quantity, _id } = newdata;
+const ModalForm: React.FC<ModalFormProps> = ({
+  modalIsOpen,
+  closeModal,
+  newdata,
+}) => {
+  const { name, description, category, price, quantity, _id } = newdata;
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<Product>();
   const [photo, setPhoto] = useState(null);
   const navigate = useNavigate();
 
-  type dataType = {
-    name: string;
-    price: string;
-    quantity: string;
-    description: string;
-    image: string;
-    category: string;
-  };
-
-  const onSubmit = async (data: dataType) => {
+  const onSubmit = async (data: Product) => {
     const serviceUpdateData = {
       name: data.name,
       price: data.price,
@@ -48,7 +33,7 @@ const ModalForm = ({ modalIsOpen, closeModal, newdata }) => {
     try {
       const res = await axios({
         method: "put",
-        url: `http://localhost:5500/api/updateProduct/${_id}`,
+        url: `https://fitness-equp-server.vercel.app/api/updateProduct/${_id}`,
         data: serviceUpdateData,
       });
       console.log("server side response", res);
@@ -68,20 +53,21 @@ const ModalForm = ({ modalIsOpen, closeModal, newdata }) => {
   };
 
   // photo upload
-  const handleImageUpload = (event) => {
-    console.log(event.target.files[0]);
-    const imageData = new FormData();
-    imageData.set("key", "85444d10cf609e017623ead34516426d");
-    imageData.append("image", event.target.files[0]);
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      const imageData = new FormData();
+      imageData.set("key", "85444d10cf609e017623ead34516426d");
+      imageData.append("image", event.target.files[0]);
 
-    axios
-      .post("https://api.imgbb.com/1/upload", imageData)
-      .then(function (response) {
-        setPhoto(response.data.data.display_url);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      axios
+        .post("https://api.imgbb.com/1/upload", imageData)
+        .then((response) => {
+          setPhoto(response.data.data.display_url);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   return (
@@ -148,7 +134,6 @@ const ModalForm = ({ modalIsOpen, closeModal, newdata }) => {
           />
           <br />
           <textarea
-            type="text"
             defaultValue={description}
             placeholder="Description"
             {...register("description")}

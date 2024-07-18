@@ -4,14 +4,20 @@ import { Product } from "../../interface";
 import ProductEdit from "../ProductEdit/ProductEdit";
 
 const ProductList = () => {
-  const { data, error, isLoading } = useGetAllProductsQuery({});
+  const { data, error, isLoading } = useGetAllProductsQuery();
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    let errorMessage = "An unknown error occurred";
+    if ("status" in error) {
+      errorMessage = `Error: ${error.status}`;
+    } else if ("message" in error) {
+      errorMessage = `Error: ${error.message}`;
+    }
+    return <div>{errorMessage}</div>;
   }
 
   if (!data || !data.date) {

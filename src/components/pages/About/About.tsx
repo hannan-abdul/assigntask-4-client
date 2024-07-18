@@ -1,4 +1,3 @@
-import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import "./about.css";
 
@@ -7,6 +6,22 @@ const About = () => {
     <section id="contact" className="contact-section">
       <div>
         <Container>
+          <div>
+            <h1>Overview</h1>
+            <p className="overview-para">
+              Our gym company is dedicated to transforming lives through fitness
+              and wellness. We offer state-of-the-art facilities equipped with
+              the latest exercise equipment, a variety of group fitness classes,
+              and personalized training programs. Our team of certified trainers
+              and nutrition experts are committed to helping members achieve
+              their health goals. We foster a supportive and inclusive community
+              where everyone, from beginners to advanced athletes, can thrive.
+              With a focus on holistic wellness, we provide resources for
+              physical, mental, and nutritional health, ensuring our members
+              lead balanced and fulfilling lives. Join us and embark on your
+              fitness journey today.
+            </p>
+          </div>
           <div className="text-center">
             <h1>Contact Us</h1>
           </div>

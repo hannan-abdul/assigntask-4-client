@@ -9,19 +9,26 @@ import { PageChangeEvent } from "./constant";
 const Body = () => {
   const path = useLocation();
   const [pageNumber, setPageNumber] = useState(0);
-  const { data, error, isLoading } = useGetAllProductsQuery({});
+  const { data, error, isLoading } = useGetAllProductsQuery();
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    let errorMessage = "An unknown error occurred";
+    if ("status" in error) {
+      errorMessage = `Error: ${error.status}`;
+    } else if ("message" in error) {
+      errorMessage = `Error: ${error.message}`;
+    }
+    return <div>{errorMessage}</div>;
   }
 
   if (!data || !data.date) {
     return <div>No data available</div>;
   }
-
+  console.log("body", data.date);
   const filterPath = path.pathname.slice(10).replace("&", "");
   const filterNews = data.date.filter((name) =>
     name.category.includes(filterPath)

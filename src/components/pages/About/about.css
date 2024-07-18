@@ -127,3 +127,6 @@ button {
   color: #f00;
   font-style: normal;
 }
+.overview-para {
+  text-align: left;
+}
